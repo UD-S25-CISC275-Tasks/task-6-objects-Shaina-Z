@@ -119,7 +119,7 @@ export function publishQuestion(question: Question): Question {
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
     const newQuestion = { ...oldQuestion };
-    newQuestion.id = oldQuestion.id;
+    newQuestion.id = id;
     newQuestion.name = "Copy of " + newQuestion.name;
     newQuestion.published = false;
     return newQuestion;
@@ -152,5 +152,8 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number },
 ): Question {
-    return contentQuestion;
+    let newQuestion = { ...contentQuestion };
+    newQuestion.points = points;
+    newQuestion.published = false;
+    return newQuestion;
 }
